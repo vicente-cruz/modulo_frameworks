@@ -1,0 +1,14 @@
+Tipos de Framework:
+Microframework (ou bibliotecas)
+    Para ajudar em um projeto maior.
+        Ex: Slim
+
+Framework agilidade máxima:
+    Entregar projetos rápidos.
+        Ex: CodeIgnite. Rápido de mexer e de fácil aprendizagem.
+        Caracts: muito aberto, altamente flexível
+
+Frameworks corporativos:
+    Grandes empresas, muitos desenvolvedores. Padronização de desenv.
+        Ex: Zend, Laravel, Cake. Aprendizado lento.
+        Caracts: Rígido. Requer adequação ao framework.

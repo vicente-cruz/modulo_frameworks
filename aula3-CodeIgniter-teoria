@@ -1,0 +1,69 @@
+Parte 1)
+Acessar: www.codeigniter.com
+Baixar, extrair e executar. Pronto para execução.
+
+Parte 2)
+CodeIgniter/user_guide -> Documentação (pode excluir)
+CodeIgniter/system -> raiz do programa. DEIXAR PARADA!
+
+Constatar que de fato ele usa MVC:
+    CodeIgniter/application/config/routes.php
+    ...
+    // Roteamento padrão p/ a página de "Welcome"
+    $route['default_controller'] = 'welcome';
+
+    // Configurações do DB - CodeIgniter/application/config/database.php
+    ...
+    $db['default'] = array(
+            'dsn'	=> '',
+            'hostname' => 'localhost',
+            'username' => '',
+            'password' => '',
+            'database' => '',
+            'dbdriver' => 'mysqli',
+    ...
+
+    // Load de arquivos - CodeIgniter/application/config/autoload.php
+    ...
+    $autoload['model'] = array('my_model');
+
+Parte 3)
+    Aula 1) Acesso a páginas estáticas
+        Cria 'controllers/Pages.php'
+        Cria 'views/pages/home.php', 'views/pages/sobre.php'
+        Cria 'views/templates/header.php', 'views/templates/footer.php'
+
+        Modifica 'config/routes.php' p/não precisar 'index.php/pages/views/etc...'
+    Aula 2) Cria página de notícias.
+    *) SQL para criar o BD:
+        CREATE DATABASE codeigniter WITH OWNER = postgres ENCODING = 'UTF8' LC_COLLATE = 'pt_BR.UTF-8' LC_CTYPE = 'pt_BR.UTF-8' TABLESPACE = pg_default CONNECTION LIMIT = -1;
+
+    *) SQL para criar tabelas
+        CREATE TABLE public.news
+        (
+            id integer NOT NULL DEFAULT nextval('news_id_seq'::regclass),
+            title character(100) COLLATE pg_catalog."default",
+            uri character(100) COLLATE pg_catalog."default",
+            text text COLLATE pg_catalog."default",
+            CONSTRAINT news_pkey PRIMARY KEY (id)
+        )
+        WITH (
+            OIDS = FALSE
+        )
+        TABLESPACE pg_default;
+        ALTER TABLE public.news
+            OWNER to postgres;
+
+    *) SQL para inserir o conteúdo no BD:
+        insert into
+            news(title, uri, text)
+        values
+            ('Homem é preso por fazer nada','homem-preso', 'Texto da notícia do homem preso...'),
+            ('Novo iPhone 23', 'novo-iphone-23', 'Notícia sobre o iphone'),
+            ('Novo curso de NodeJS do Bonieky', 'novo-curso-de-nodejs-do-bonieky', 'Notícia referente ao novo curso de NodeJS')
+
+    Modifica config/database.php para conectar ao DB
+    
+    Cria "models/News_model.php", "controllers/News.php", "views/news/index.php"  e "views/news/view.php"
+
+    Aula 3)

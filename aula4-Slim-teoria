@@ -1,0 +1,64 @@
+Parte 1)
+Microframework -> Auxílio à grantes projetos
+Micro: sem vários recursos (login, manipulação de links, etc...)
+    Trabalha com injeção de dependência.
+    Ex: importar "Monolog" p/dentro do FW
+Slim - Cria rotas p/vários padrões, diferente de usar "Controller'
+
+Parte 2)
+Baixar o SLIM via composer
+    a) Exemplo de uso simples do composer para baixar a biblioteca "Monolog":
+        - Baixar o composer acessando https://getcomposer.org/
+        - Ir em Download e baixar o "Latest Snapshot". Irá baixar o "composer.phar"
+        - Mova-o para a pasta do projeto.
+        - Na pasta do projeto, crie o arquivo "composer.json" e coloque o seguinte texto:
+        {
+            "require":{
+                "monolog/monolog":"1.0.*" // Formato é "<vendor>/<dependencia (em geral, igual ao vendor>":"<versão (obs: '*' pega versão atual)>"
+            }
+        }
+        - Via CMD ou Shell, vá até a pasta do projeto
+        - Execute o comando a seguir e está pronto: $ composer install
+        - o Composer criará a pasta "Vendor", que contém o arquivo baixado, e o arquivo "Autoload"
+        - Chamar a biblioteca instalada via " require 'vendor/autoload.php' "
+        - Por curiosidade, pode-se olhar o arquivo "composer.lock" e ver o JSON do que ele fez.
+        - Para verificar atualizações futuras, executar: $ composer update
+        - CURIOSIDADE: todos os pacotes disponíveis do Composer estão  no repositório Github do site Packagist.
+    b) Após baixar o composer.phar e movê-lo até o diretório do projeto e executar via linha de comando (shell, CMD...):
+        - $ php composer.phar create-project slim/slim-skeleton projeto_slim
+        - Sintaxe php composer.phar create-project <vendor>/<dependencia> <diretorio_destino>
+    c) Verificar se o projeto foi baixado acessando http://<caminho_raiz>/projeto_slim/public/
+        - Em caso de erro de permissão, executar "$ chmod -R 777 projeto_slim/"
+
+Estrutura do projeto:
+public = pasta do projeto. Aqui está o index.php
+src = fontes
+    src/settings.php // De onde puxa as configurações de dependências
+        'displayErrorDetails' => true // Mostra erros. Deixar ligado em ambiente desenv.
+
+    src/dependencies.php // Para incluir dependências. ex: incluindo a dependência "banco dados"
+        $container['db'] = function($c) {
+            $settings = $c->get('settings')['db'];
+            $pdo = new PDO("pgsql:host=".$settings['host'].";dbname=".$settings['dbname'],$settings['user'],$settings['pass']);
+            $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+            return $pdo;
+        };
+
+    src/routes.php // Roteamento...
+    // Qualquer coisa que for digitada, 
+    $app->get('/[{name}]', function (Request $request, Response $response, array $args) {
+
+        // Render index view        (<dados_para_mostrar>, <view_para_mostrar>, <equivale aos $dados do MVC>)
+        return $this->renderer->render($response, 'index.phtml', $args);
+    });
+
+Ex: Criando uma agenda telefônica
+Cria tabela no DB
+
+Lista os telefones em public/index.php
+    Cria rota para a página inicial
+    Cria arquivo template/home.phtml
+    Busca contatos do DB e mostra na tela
+
+Cria novo contato:
+    Cria link para adicionar contato em template/home.phtml

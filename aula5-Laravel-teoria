@@ -1,0 +1,75 @@
+parte 1)
+Laravel:
+https://laravel.com/
+
+Criado com muitos Design Patterns.
+
+Complexo quando construído, simples de ser usado.
+
+Força padronização, evitando gambiarras.
+    Ex: sistema de Login próprio.
+
+Usa Composer direto, até para baixar o próprio Laravel.
+
+parte 2)
+Instalando:
+    Ir para a pasta onde o projeto Laravel será instalado.
+    Executar: 
+        $ php composer.phar create-project --prefer-dist laravel/laravel <nome_pasta_projeto>
+    Exemplo, usando "nome_pasta_projeto" projeto_laravel:
+        $ php composer.phar create-project --prefer-dist laravel/laravel projeto_laravel
+
+Configurar:
+1)  Renomear o '.env.example' para '.env'
+    Abrir o arquivo '.env'
+    Alterar as configurações do DB para o específico (assumindo que foi criado o DB laravel)
+    ...
+    DB_CONNECTION=pgsql
+    DB_HOST=10.76.64.83
+    DB_PORT=5432
+    DB_DATABASE=laravel
+    DB_USERNAME=postgres
+    DB_PASSWORD=&kVyhG<({t}[
+    ...
+2)  Configurar a pasta projeto_laravel/ para permitir escrita:
+    $ chmod -R 777 projeto_laravel/
+3)  Testar se está funcionando. Acessar:
+    http://benim.daer.rs.gov.br/cursophp_benin/modulo_frameworks/aula5-laravel/projeto_laravel/public/
+    
+
+Descrição:
+1)  Principais pastas: app/, config/, public/, resources/, routes/
+2)  Pasta 'public/', a primeira a ser acessada pelo sistema
+3)  Controllers: dentro da pasta "app/Http/Controllers"
+4)  Models: dentro da pasta app/. Inicialmente existe o model "Users.php" como exemplo
+5)  Views: dentro da pasta "resources/views"
+6)  Routes: em routes/web.php
+    Conteúdo inicial:
+        ...
+        // Chama a view 'welcome';
+        Route::get('/', function () {
+            return view('welcome');
+        });
+        ...
+
+Projeto Laravel: lista de tarefas
+Aula 1)
+Cria Tabela 'Lista'
+Cria HomeController.php com os namespaces
+Cria a rota para o HomeController em app/routes/web.php
+Cria a view home.blade.php em app/resources/views/
+
+Aula 2)
+Mostra variáveis php na view home por meio de "Template Engine"
+Conecta com DB usando a engine "Eloquent"
+Cria model Lista.php em app/
+    Usar nome semelhante à tabela correspondente.
+    Ex: tabela 'usuarios', model 'Usuario.php'
+Busca registros da tabela lista pelo comando $lista = Lista::all()
+Mostra registros na view com comandos {{}} e @foreach e @if
+
+Aula3)
+Programação segura {{csrf_field()}}
+Cria rota para POST
+Recebe dados via POST e salva
+Deleta itens

@@ -1,0 +1,22 @@
+Melhores frameworks para PHP
+Cake:
+    Prós - Comunidade grande e ativa
+    Contra - Rigidez de código, pode fugir de alguns padrões.
+CodeIgniter:
+    Usa padrão MVC
+    Prós - Leve, fácil, alta comunidade e Melhores Manuais
+    Contra - Mta liberdade, fuga do padrão de desenv.
+Zend:
+    Prós - Melhor fw corporativo. Já consagrado. Segue à risca os design patterns.
+    Prós ou cons: Apenas uma linha de raciocínio. Sem POG.
+    Contra - Alta curva de aprendizado.
+Laravel:
+    Mais popular. Da moda
+    Pró - Fácil de aprender. Usa "composer". Comunidade. Leve. Alta integração
+    Cons - Poucas funcionalidades.
+UI:
+    Pró - Fácil CRUD. Suporte nativo à AJAX. Fácil aprendizagem.
+    Con - Muita liberdade (?)
+Slim:
+    Pró - Leve, bom p/requisições RESTful, bons docs.
+    Cons - Não útil para sistemas complexos. Usar p/integração c/outros projs
