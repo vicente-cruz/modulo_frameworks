@@ -13,6 +13,11 @@ Usa Composer direto, até para baixar o próprio Laravel.
 
 parte 2)
 Instalando:
+    OBS: se estiver atrás de proxy, configurar a variável de ambiente HTTP_PROXY
+        $ export HTTP_PROXY=http://<IP>:<PORTA>
+    Exemplo:
+        $ export HTTP_PROXY=http://10.76.64.14:3128
+
     Ir para a pasta onde o projeto Laravel será instalado.
     Executar: 
         $ php composer.phar create-project --prefer-dist laravel/laravel <nome_pasta_projeto>
